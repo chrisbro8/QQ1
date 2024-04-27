@@ -1,20 +1,22 @@
 {% extends "coursework/main.html" %}
 {%block content%}
-<link rel="stylesheet" href="/static/viewbookings.css">
-<p>Bookings History</p>
+<link rel="stylesheet" href="/static/viewequipment.css">
+<div class="title">Equipment</div>
 <div class="page">
     {% for item in equipment %}
     <div class="booking-row">
-        <img class="equipment-img" src="{{ item.Equipment_images.url }}" style="height: 100px"></img>
+        <div class="equipment-img-container">
+            <img class="equipment-img" src="{{ item.Equipment_images.url }}" style="height: 100px"></img>
+        </div>
         <div class="equipment-info">
             <h3>{{ item.Equipmentname }}</h3>
             <p>{{ item.EquipmentID }}</p>
             <p>Last used {{ item.Equipment_lastUsed }}</p>
         </div>
-        <button class="rebook">Manage</button>
+        <button class="rebook" onclick="window.location.href='/ad/equipment/{{item.id}}/edit'">Manage</button>
     </div>
     {% empty %}
-    <p>No reservations found.</p>
+    <p>No equipment found.</p>
     {% endfor %}
 </div>
 {% endblock%}
