@@ -14,7 +14,18 @@
     margin: 20px auto 30px auto;
 }
 
-.booking-row {
+.filters-list {
+    min-width: 950px;
+    width: 60%;
+    max-width: 1200px;
+    margin: 0 auto 30px auto;
+}
+
+.filters-list select {
+    height: 30px;
+}
+
+.equipment-item {
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid black;
@@ -22,12 +33,16 @@
     margin-bottom: 24px;
 }
 
-.booking-row > * {
+.equipment-item > * {
     margin-right: 8px;
 }
 
 .equipment-info {
     flex-grow: 1;
+}
+
+.equipment-info p {
+    margin-bottom: 0;
 }
 
 .equipment-img-container {

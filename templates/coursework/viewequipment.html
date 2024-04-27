@@ -1,17 +1,61 @@
 {% extends "coursework/main.html" %}
 {%block content%}
 <link rel="stylesheet" href="/static/viewequipment.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(() => {
+        $('#locations').on("input", function() {
+            $('#equipment_name_filter').val("")
+            const locationFilter = this.value
+            if (locationFilter == "") {
+                $('.equipment-item').show()
+                return;
+            }
+            $('.equipment-item').each(function() {
+                if (this.querySelector('.equipment-loc').innerText != locationFilter) {
+                    $(this).hide()
+                } else {
+                    $(this).show()
+                }
+            })
+        })
+
+        $('#equipment_name_filter').on("input", function() {
+            const query = this.value.toLowerCase().trim()
+            $('#locations').val("")
+            $('.equipment-item').each(function() {
+                if (this.querySelector('.equipment-name').innerText.toLowerCase().includes(query) ||
+                    this.querySelector('.equipment-id').innerText.toLowerCase().includes(query)) {
+                    $(this).show()
+                } else {
+                    $(this).hide()
+                }
+            })
+        })
+    })
+</script>
 <div class="title">Equipment</div>
+<div class="filters-list">
+    <span>Filters:&emsp;&emsp;</span>
+    <input type="text" name="equipment_name" id="equipment_name_filter" placeholder="Equipment name/ID">
+    <select name="locations" id="locations">
+        <option value="" selected>Location</option>
+        {% for loc in locations %}
+        <option value="{{ loc.0 }}">{{ loc.1 }}</option>
+        {% endfor %}
+    </select>
+</div>
 <div class="page">
     {% for item in equipment %}
-    <div class="booking-row">
+    <div class="equipment-item">
         <div class="equipment-img-container">
             <img class="equipment-img" src="{{ item.Equipment_images.url }}" style="height: 100px"></img>
         </div>
         <div class="equipment-info">
-            <h3>{{ item.Equipmentname }}</h3>
-            <p>{{ item.EquipmentID }}</p>
-            <p>Last used {{ item.Equipment_lastUsed }}</p>
+            <h3 class="equipment-name">{{ item.Equipmentname }}</h3>
+            <p class="equipment-id">{{ item.EquipmentID }}</p>
+            <p class="equipment-loc">{{ item.Equipment_assignedlocation }}</p>
+            <p class="equipment-lastused">Last used {{ item.Equipment_lastUsed }}</p>
         </div>
         <button class="rebook" onclick="window.location.href='/ad/equipment/{{item.id}}/edit'">Manage</button>
     </div>

@@ -43,7 +43,7 @@ def RegisterEquipment(request):
     return render(request, 'coursework/registerequipment.html', {'form': form, 'title_message': 'Register new equipment'})
 def ViewEquipment(request):
     equipment = Equipment.objects.all()
-    return render(request, 'coursework/viewequipment.html', {'equipment': equipment})
+    return render(request, 'coursework/viewequipment.html', {'equipment': equipment, 'locations': Equipment.CHOICES_LOCATION})
 def EditEquipment(request, equipmentid):
     equipment = Equipment.objects.get(id=equipmentid)
     if request.method == "POST":
