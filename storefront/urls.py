@@ -30,5 +30,8 @@ urlpatterns = [
     path('',views.home,name="HomePage"),
     path('ViewBookings',views.ViewBookings,name="ViewBookings"),
     path('nav',views.navbar,name="navbarPage"),
-]
-urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    path('edituseraccount', views.EditUserAccount,name="edituseraccount"),
+    path('adminviewbookings', views.AdminViewBookings,name="AdminViewBookings"),
+    path('editbookingstatus/<int:booking>/<int:status>', views.EditBookingStatus),
+    path('ad/equipment/register', views.RegisterEquipment)
+] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

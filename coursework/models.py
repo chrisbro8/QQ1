@@ -14,17 +14,17 @@ class User(models.Model):
 )
   
     userID = models.CharField(max_length=50, null=True)
-    User_firstname = models.CharField(max_length=50, null=True)
-    User_lastname = models.CharField(max_length=50, null=True)
-    User_Email = models.EmailField(max_length=254, null=True)
+    User_firstname = models.CharField(max_length=50, null=True, verbose_name="First Name")
+    User_lastname = models.CharField(max_length=50, null=True, verbose_name="Last Name")
+    User_Email = models.EmailField(max_length=254, null=True, verbose_name="Email")
     User_password = models.CharField(max_length=50, null=True)
-    User_Dateofbirth = models.DateField(auto_now_add=True)
+    User_Dateofbirth = models.DateField(verbose_name="Date of Birth")
     User_accountstatus = models.IntegerField(null=True,choices=CHOICES_ACCT)
     User_creationDate = models.DateTimeField(auto_now_add=True, null=True)
     User_currentReservation = models.CharField(max_length=50, null=True)
     User_historicalreservation = models.CharField(max_length=50, null=True)
-    User_phoneNumber = models.CharField(max_length=13, null=True)
-    User_address = models.CharField(max_length=50, null=True)
+    User_phoneNumber = models.CharField(max_length=13, null=True, verbose_name="Phone Number")
+    User_address = models.CharField(max_length=50, null=True, verbose_name="Address")
     UserType = models.IntegerField(null=True, choices=CHOICES)
     def __str__(self):
         return f"{self.User_firstname} {self.User_lastname} {self.UserType}"
@@ -78,23 +78,32 @@ class Equipment(models.Model):
     ('Non_PortablePC','NonPortablePC'),
     )
 
-    EquipmentID = models.CharField(max_length=50, null=True)
-    Equipmentname = models.CharField(max_length=50, null=True)
-    Equipment_type = models.CharField(max_length=50, null=True)
-    Equipment_category = models.CharField(max_length=50, null=True,choices=CATEGORY)
-    Equipment_lastUsed = models.DateTimeField(auto_now_add=True, null=True)
-    Equipment_warrantyinfo = models.DateTimeField(auto_now_add=True, null=True)
-    Equipment_assignedlocation = models.CharField(max_length=30, null=True, choices=CHOICES_LOCATION)
-    Equipment_restrictionStatus = models.IntegerField(null=True, choices=CHOICES_RESTRICT)# 0 No restriction 1  mean
-    Equipment_UsageType = models.IntegerField(null=True, choices=CHOICES_USAGE)# 0 meaning can take home 1 meaning it can taken home
-    Equipment_images=models.ImageField(null=True,blank=True)
+    EquipmentID = models.CharField(max_length=50)
+    Equipmentname = models.CharField(max_length=50, verbose_name="Name")
+    Equipment_type = models.CharField(max_length=50, verbose_name="Type")
+    Equipment_category = models.CharField(max_length=50, choices=CATEGORY, verbose_name="Category")
+    Equipment_lastUsed = models.DateTimeField(auto_now_add=True)
+    Equipment_warrantyinfo = models.DateTimeField(verbose_name="Warranty Info")
+    Equipment_assignedlocation = models.CharField(max_length=30, choices=CHOICES_LOCATION, verbose_name="Assigned Location")
+    Equipment_restrictionStatus = models.IntegerField(choices=CHOICES_RESTRICT, verbose_name="Restriction")# 0 No restriction 1  mean
+    Equipment_UsageType = models.IntegerField(choices=CHOICES_USAGE, verbose_name="Take Home?")# 0 meaning can take home 1 meaning it can taken home
+    Equipment_images=models.ImageField(upload_to="", verbose_name="Image")
 
     def __str__(self):
         return f"{self.Equipmentname} {self.Equipment_category}"
 
 class Reservation(models.Model):
+    BOOKING_CHOICES = (
+        (0, 'Waiting for approval'),
+        (1, 'Approved'),
+        (2, 'Denied'),
+        (3, 'Waiting to be collected'),
+        (4, 'Collected'),
+        (5, 'Not returned'),
+        (6, 'Returned'),
+    )
     BookingID = models.CharField(max_length=50, null=True)
-    Booking_status = models.IntegerField(null=True)
+    Booking_status = models.IntegerField(null=True, choices=BOOKING_CHOICES)
     Booking_alertstatus = models.IntegerField(null=True)
     Booking_madeDate = models.DateTimeField(auto_now_add=True, null=True)
     Booking_startDate = models.DateTimeField(auto_now_add=True, null=True)
