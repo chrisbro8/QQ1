@@ -33,14 +33,26 @@ def EditBookingStatus(request, booking, status):
     return HttpResponse(status=200)
 def RegisterEquipment(request):
     if request.method == "POST":
-        form = RegisterEquipmentForm(request.POST, request.FILES)
+        form = EquipmentForm(request.POST, request.FILES)
         if form.is_valid():
-            form.cleaned_data['Equipment_images'] = form.cleaned_data['Equipment_images'].split()
+            # form.cleaned_data['Equipment_images'] = form.cleaned_data['Equipment_images'].split()
             form.save()
             return redirect('/')
-        print(form.errors)
-    form = RegisterEquipmentForm()
-    return render(request, 'coursework/registerequipment.html', {'form': form})
+
+    form = EquipmentForm()
+    return render(request, 'coursework/registerequipment.html', {'form': form, 'title_message': 'Register new equipment'})
+def ViewEquipment(request):
+    equipment = Equipment.objects.all()
+    return render(request, 'coursework/viewequipment.html', {'equipment': equipment})
+def EditEquipment(request, equipmentid):
+    equipment = Equipment.objects.get(id=equipmentid)
+    if request.method == "POST":
+        form = EquipmentForm(request.POST, request.FILES, instance=equipment)
+        if form.is_valid():
+            form.save()
+    else:
+        form = EquipmentForm(instance=equipment)
+    return render(request, 'coursework/registerequipment.html', {'form': form, 'title_message': 'Editing "' + equipment.Equipmentname + '"'})
 '''def ViewEquipment(request):
     return render(request, 'accounts/ViewEquipment.html')
 def EditUserAcc(request):

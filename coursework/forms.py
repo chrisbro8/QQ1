@@ -6,7 +6,7 @@ class EditUserAccountForm(ModelForm):
         model = User
         fields = ['User_firstname', 'User_lastname', 'User_Email', 'User_Dateofbirth', 'User_phoneNumber', 'User_address']
 
-class RegisterEquipmentForm(ModelForm):
+class EquipmentForm(ModelForm):
     class Meta:
         model = Equipment
-        fields = ['Equipmentname', 'Equipment_type', 'Equipment_category', 'Equipment_warrantyinfo', 'Equipment_assignedlocation', 'Equipment_restrictionStatus', 'Equipment_UsageType', 'Equipment_images']
+        fields = ['EquipmentID', 'Equipmentname', 'Equipment_type', 'Equipment_category', 'Equipment_warrantyinfo', 'Equipment_assignedlocation', 'Equipment_restrictionStatus', 'Equipment_UsageType', 'Equipment_images']

@@ -33,5 +33,7 @@ urlpatterns = [
     path('edituseraccount', views.EditUserAccount,name="edituseraccount"),
     path('adminviewbookings', views.AdminViewBookings,name="AdminViewBookings"),
     path('editbookingstatus/<int:booking>/<int:status>', views.EditBookingStatus),
-    path('ad/equipment/register', views.RegisterEquipment)
+    path('ad/equipment/register', views.RegisterEquipment),
+    path('ad/equipment/view', views.ViewEquipment),
+    path('ad/equipment/<int:equipmentid>/edit', views.EditEquipment)
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
