@@ -1,3 +1,6 @@
+# File created by Brownwell
+# Edits made by Connor (adding views created by me)
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
@@ -35,7 +38,6 @@ def RegisterEquipment(request):
     if request.method == "POST":
         form = EquipmentForm(request.POST, request.FILES)
         if form.is_valid():
-            # form.cleaned_data['Equipment_images'] = form.cleaned_data['Equipment_images'].split()
             form.save()
             return redirect('/')
 

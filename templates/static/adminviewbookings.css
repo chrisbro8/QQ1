@@ -1,0 +1,85 @@
+.page {
+    min-width: 1200px;
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* .bookings {
+} */
+
+.booking-row {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+    height: 120px;
+    margin-bottom: 24px;
+}
+
+.booking-row > * {
+    margin-right: 8px;
+}
+
+.equipment-info {
+    flex-grow: 1;
+}
+
+.rebook {
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100px;
+    height: 100px;
+    align-self: center;
+}
+
+.status {
+    align-self: center;
+    width: 250px;
+    height: 100px;
+    line-height: 100px;
+    margin: auto 0;
+}
+
+.filter-options {
+    width: 30%;
+    margin-right: 20px;
+    background-color: #ccc;
+    padding: 24px;
+}
+
+.option {
+    margin: 0px 0px 16px 8px;
+    display: flex;
+
+}
+
+.option:hover {
+    background-color: #bbb;
+    cursor: pointer;
+}
+
+.option-box {
+    width: 24px;
+    height: 24px;
+    background-color: #aaa;
+    margin-right: 8px;
+}
+
+.user-info {
+    align-self: center;
+}
+
+.booking-status {
+    margin-left: 8px;
+    height: 40px;
+    align-self: center;
+}
+
+/* .option-name {
+} */
+
+.bookings {
+    flex-grow: 1;
+}

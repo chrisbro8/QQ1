@@ -1,3 +1,6 @@
+# File created by Brownwell
+# Edits by Connor (adding verbose_names to some variables and also removing certain field attributes that were unneeded "auto_now_add")
+
 from django.db import models
 from django.apps import apps# imported this to bypass circular dependency
 CHOICES_ACCT= (

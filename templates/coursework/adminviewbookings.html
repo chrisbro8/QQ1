@@ -1,0 +1,52 @@
+{% extends "coursework/main.html" %}
+{%block content%}
+<!-- File created by Connor -->
+<link rel="stylesheet" href="/static/adminviewbookings.css">
+<p>Recent bookings</p>
+<div class="page">
+
+    <div class="filter-options">
+        <h3>Filter options</h3>
+        <div class="option selected-option">
+            <div class="option-box"></div>
+            <div class="option-name">All</div>
+        </div>
+        <div class="option">
+            <div class="option-box"></div>
+            <div class="option-name">Awaiting Approval</div>
+        </div>
+        <div class="option">
+            <div class="option-box"></div>
+            <div class="option-name">Awaiting Collection</div>
+        </div>
+        <div class="option">
+            <div class="option-box"></div>
+            <div class="option-name">Collected</div>
+        </div>
+    </div>
+    <div class="bookings">
+        {% for reservation in reservations %}
+        <div class="booking-row">
+            <img class="equipment-img" src="{{ reservation.Equipment.Equipment_images.url }}" style="height: 100px"></img>
+            <div class="equipment-info">
+                <h3>{{ reservation.Equipment.Equipmentname }}</h3>
+                <p>{{ reservation.Equipment.EquipmentID }}</p>
+                <p>{{ reservation.Booking_startDate }} | {{ reservation.Booking_endDate }}</p>
+            </div>
+            <div class="user-info">
+                <p><b>Booking by:</b></p>
+                <p>{{ reservation.User.User_firstname }} {{ reservation.User.User_lastname }}</p>
+            </div>
+            <select class="booking-status">
+                {% for choice in choices %}
+                <option value="{{ choice.0 }}" {% if reservation.Booking_status == choice.0 %} selected {% endif %}>{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+            <!-- <p class="status">Status: {{ reservation.get_Booking_status_display }}</p> -->
+        </div>
+        {% empty %}
+        <p>No reservations found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock%}

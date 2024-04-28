@@ -1,4 +1,23 @@
 {% extends "coursework/main.html" %}
 {%block content%}
-<p>View Bookings</p>
+<!-- File created by Connor -->
+<link rel="stylesheet" href="/static/viewbookings.css">
+<p>Bookings History</p>
+<div class="page">
+    {% for reservation in reservations %}
+    <div class="booking-row">
+        <img class="equipment-img" src="{{ reservation.Equipment.Equipment_images.url }}" style="height: 100px"></img>
+        <div class="equipment-info">
+            <h3>{{ reservation.Equipment.Equipmentname }}</h3>
+            <p>{{ reservation.Equipment.EquipmentID }}</p>
+            <p>{{ reservation.Booking_startDate }} | {{ reservation.Booking_endDate }}</p>
+        </div>
+        <button class="rebook">Cancel</button>
+        <button class="rebook">Rebook</button>
+        <p class="status">Status: {{ reservation.get_Booking_status_display }}</p>
+    </div>
+    {% empty %}
+    <p>No reservations found.</p>
+    {% endfor %}
+</div>
 {% endblock%}

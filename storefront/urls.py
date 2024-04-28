@@ -1,3 +1,6 @@
+# File created by Brownwell
+# Edited by Connor (adding routes that I created)
+
 """
 URL configuration for storefront project.
 

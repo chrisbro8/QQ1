@@ -1,3 +1,5 @@
+#File created by Connor (modelforms made: EquipmentForm)
+
 from django.forms import ModelForm
 from .models import User, Equipment
 
