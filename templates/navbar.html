@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Nav</title>
+    <style>
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+      
+        
+      }
+
+      .navbar {
+        flex: 1;
+        padding-left: 80px;
+        margin-left:40px;
+        width:100%;
+        padding;100%;
+      }
+      .detail{
+        font-size:18px;
+        color:#fff;
+        margin-right:20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar-container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        
+          
+
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText1">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home'%}">Home <span class="sr-only"></span></a>
+              
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'profile'%}"">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'Equipment'%}">Shop</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={% url 'cart'%}>Cart</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href={% url 'settings'%}>Settings</a>
+            </li>
+
+
+
+
+          </ul>
+        </div>
+      </nav>
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText2" aria-controls="navbarText2" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <span class="detail">Hello ,{{request.user}}</span>
+        
+        {% if request.user.is_staff %}
+        <span class="detail">Staff</span>
+        {% elif request.user.is_user %}
+        <span class="detail">User</span>
+        {% endif %} 
+        <span><a  class="detail" href="{% url 'notify' %}">Notify</a></span>
+        <span><a  class="detail" href="{% url 'logout' %}">logout</a></span>
+      </nav>
+    </div>
+  </body>
+</html>

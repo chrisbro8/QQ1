@@ -1,0 +1,51 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+<div class="all">
+<div class="center">
+  <p class="sub">Trending Equipments</p>
+  <div class="row">    {% for equipment in equipments|slice:":4" %}
+      <div class="col-md-4">
+        <div class="card">
+          <img class="card-img-top" src="{{ equipment.Equipment_images.url }}" alt="xxxx" style="width:100%">
+          <div class="card-body">
+            <h5>{{ equipment.Equipmentname }}</h5>
+            <p>{{ equipment.Equipment_category }}.</p>
+          </div>
+        </div>
+      </div>
+    
+
+    {% empty %}
+    <p>No trending equipments found.</p>
+    {% endfor %}
+  </div>
+    {% if equipments|length > 4 %}
+                <p><a href="#">Next Page</a></p>
+                {% endif %}
+</div>
+
+<div class="center">
+  <p class=sub>Recently Used</p>
+  <div class="row">
+    {% for equipment in equipments|slice:":4" %}
+    <div class="col-md-4">
+      <div class="card">
+        <img class="card-img-top" src="{{ equipment.Equipment_images.url }}" alt="" style="width:100%">
+        <div class="card-body">
+          <h5>{{ equipment.Equipmentname }}</h5>
+          <p>{{ equipment.Equipment_category }}.</p>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <p>No recently used equipments found.</p>
+    {% endfor %}
+  </div>  {% if equipments|length > 4 %}
+  <p><a href="#">Next Page</a></p>
+  {% endif %}
+</div>
+</div>
+
+{% endblock %}

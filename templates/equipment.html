@@ -1,0 +1,121 @@
+{% extends "main.html" %}
+{% load static %}
+<!--file created by brownwell-->
+
+
+{% block content %}
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <title>Nav</title>
+      <style>
+        .navbar-container {
+          display: flex;
+          justify-content: space-between;
+        
+          
+        }
+  
+        .navbar {
+          flex: 1;
+          padding-left: 80px;
+          margin-left:40px;
+          width:100%;
+          padding;100%;
+        }
+        .detail{
+          font-size:18px;
+          color:#fff;
+          margin-right:20px;
+        }
+      </style>
+      <script>
+        function handleClick1(itemName, itemCategory, imageUrl) {
+          var url = "{% url 'cart' %}?";
+          url += "item_name=" + encodeURIComponent(itemName);
+          url += "&item_category=" + encodeURIComponent(itemCategory);
+          url += "&image_url=" + encodeURIComponent(imageUrl);
+          // Add more item details as needed
+          console.log(url)
+      
+          window.location.href = url;
+        }
+      </script>
+    </head>
+    <body>
+      
+    
+    </body>
+  </html>
+  
+  
+
+<form method="GET">
+  {{myFilter.form.EquipmentID.label}}
+  {{myFilter.form.EquipmentID}}
+  {{myFilter.form.Equipmentname.label}}
+    {{myFilter.form.Equipmentname}}
+    
+    {{myFilter.form.EquipmentStatus.label}}
+    {{myFilter.form.EquipmentStatus}}
+    {{myFilter.form.Equipment_type.label}}
+    {{myFilter.form.Equipment_type}}
+
+    {{myFilter.form.Equipment_category.label}}
+    {{myFilter.form.Equipment_category}}
+
+    {{myFilter.form.Equipment_lastUsed.label}}
+    {{myFilter.form.Equipment_lastUsed}}
+
+
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
+        <div >
+            <div class="row">      {% for equipment in filtered_equipment|slice:":4" %}
+                <div class="col-md-4">
+                  <div class="card">
+                    <img class="card-img-top" src="{{ equipment.Equipment_images.url}}" alt="xxxx" style="width:100%">
+                    <div class="card-body">
+                      <h5>{{ equipment.Equipmentname }}</h5>
+                      <p>{{ equipment.Equipment_category }}.</p>
+                      
+                    </div>
+                    
+                  </div>
+                  <button onclick="handleClick1()">Add to cart</button>
+                </div>
+              {% empty %}
+              <p>No equipments found</p>
+              {% endfor %}
+            </div>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {% if filtered_equipment|length > 4 %}
+                <p><a href="#">Next Page</a></p>
+                {% endif %}
+                </div>
+                </div>
+
+
+{% endblock %}

@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'coursework'
+    'coursework',
+    'django_filters'
     
 ]
 
@@ -48,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 ROOT_URLCONF = 'storefront.urls'
@@ -56,7 +57,8 @@ ROOT_URLCONF = 'storefront.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/ehima/OneDrive/Desktop/Year2/Semester2/SDGproject/Django/Projects/QQ1/templates'],
+        'DIRS': [
+            'C:/Users/ehima/OneDrive/Desktop/Year2/Semester2/SDGproject/Django/Projects/QQ1/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,7 +122,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 MEDIA_URL='/images/'
-MEDIA_ROOT=[os.path.join(BASE_DIR,'static/images')]
+MEDIA_ROOT=os.path.join(BASE_DIR,'static/images')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
